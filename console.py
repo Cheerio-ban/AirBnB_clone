@@ -3,7 +3,13 @@
 
 import cmd
 from models.base_model import BaseModel
+from models.user import User
 import models
+from models.place import Place
+from models.city import City
+from models.review import Review
+from models.state import State
+from models.amenity import Amenity
 
 
 class HBNBCommand(cmd.Cmd):
@@ -11,8 +17,12 @@ class HBNBCommand(cmd.Cmd):
     __classes = {
         "BaseModel": BaseModel(),
         "User": User(),
+        "Place": Place(),
+        "City": City(),
+        "Review": Review(),
+        "State": State(),
+        "Amenity": Amenity(),
     }
-
 
     def do_EOF(self, line):
         """End of file command to exit the program"""
@@ -28,7 +38,6 @@ class HBNBCommand(cmd.Cmd):
         print("Lines 1:", lines[1])
         print("line 2:", lines[2])
         print(line)
-
 
     def emptyline(self):
         """Handles the empty line input"""
@@ -50,7 +59,6 @@ class HBNBCommand(cmd.Cmd):
             created_object.save()
             print(created_object.id)
 
-
     def do_show(self, line):
         """usage: show BaseModel 1234-1234-1234"""
         lines = line.split()
@@ -64,11 +72,10 @@ class HBNBCommand(cmd.Cmd):
         id_no = lines[1]
         objs = models.storage.all()
         if any(obj.id == id_no for obj in objs.values()):
-            print (objs["{}.{}".format(lines[0], id_no)])
+            print(objs["{}.{}".format(lines[0], id_no)])
         else:
             print("** no instance found **")
 
-    
     def do_destroy(self, line):
         """usage: destroy BaseModel 1234-1234-1234"""
         lines = line.split()
@@ -76,7 +83,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class name missing **")
             return
         if lines[0] and lines[0] not in HBNBCommand.__classes.keys():
-            print("** class doesn't exist **") 
+            print("** class doesn't exist **")
             return
         if len(lines) == 1:
             print("** instance id missing **")
@@ -108,7 +115,7 @@ class HBNBCommand(cmd.Cmd):
             print(new_arr)
 
     def do_update(self, line):
-        """usage: update <class name> <id> <attribute name> '<attribute value>'"""
+        """usage:update <class name> <id> <attribute name> <attribute value>"""
         lines = line.split()
         if len(lines) == 0:
             print("** class name missing **")
@@ -119,7 +126,7 @@ class HBNBCommand(cmd.Cmd):
         if len(lines) == 1:
             print("** instance id missing **")
         else:
-            objs =  models.storage.all()
+            objs = models.storage.all()
             id_no = lines[1]
             if not any(obj.id == id_no for obj in objs.values()
                        if obj.__class__.__name__ == lines[0]):
@@ -141,9 +148,6 @@ class HBNBCommand(cmd.Cmd):
             lines[3] = type(obj.__class__.__dict__[lines[2]])(lines[3])
             obj.__dict__[lines[2]] = lines[3]
         models.storage.save()
-                
-
-
 
 
 if __name__ == '__main__':
