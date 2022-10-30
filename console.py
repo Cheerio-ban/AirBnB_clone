@@ -32,13 +32,6 @@ class HBNBCommand(cmd.Cmd):
         """Quit command to exit the program"""
         return True
 
-    def do_helpme(self, line):
-        lines = line.split()
-        print(lines[0])
-        print("Lines 1:", lines[1])
-        print("line 2:", lines[2])
-        print(line)
-
     def emptyline(self):
         """Handles the empty line input"""
         pass
