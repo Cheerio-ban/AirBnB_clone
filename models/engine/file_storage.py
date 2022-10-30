@@ -23,11 +23,16 @@ class FileStorage:
         return FileStorage.__objects
 
     def new(self, obj):
-        """Sets obj parameter name.id as the attribute name to the obj object"""
-        FileStorage.__objects["{}.{}".format(obj.to_dict()["__class__"], obj.id)] = obj
+        """
+        Sets obj parameter name.id as the attribute name to the obj object
+        """
+        new_obj = obj.to_dict()["__class__"]
+        FileStorage.__objects["{}.{}".format(new_obj, obj.id)] = obj
 
     def save(self):
-        """Serializes private instance __objects to private instance file_path"""
+        """
+        Serializes private instance __objects to private instance file_path
+        """
         save_obj = {}
         for key, value in FileStorage.__objects.items():
             save_obj[key] = value.to_dict()
@@ -42,7 +47,6 @@ class FileStorage:
                 for elem in objdict.values():
                     cls_name = elem["__class__"]
                     self.new(eval(cls_name)(**elem))
-            
+
         except FileNotFoundError or FileExistsError:
             return
-
