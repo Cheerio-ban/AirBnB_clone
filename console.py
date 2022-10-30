@@ -13,6 +13,7 @@ from models.amenity import Amenity
 
 
 class HBNBCommand(cmd.Cmd):
+    """Represents the console interpreter"""
     prompt = "(hbnb) "
     __classes = {
         "BaseModel": BaseModel(),
