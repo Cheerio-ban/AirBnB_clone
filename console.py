@@ -37,9 +37,6 @@ class HBNBCommand(cmd.Cmd):
         """Handles the empty line input"""
         return cmd.Cmd.emptyline(self)
 
-    def postloop(self):
-        print()
-
     def do_create(self, line):
         """Usage: create <class name>"""
         if line is None:
