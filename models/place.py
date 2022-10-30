@@ -4,6 +4,7 @@
 
 from models.base_model import BaseModel
 
+
 class Place(BaseModel):
     """A PLace class for the AirBnB project"""
     city_id = ""

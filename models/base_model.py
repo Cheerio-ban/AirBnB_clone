@@ -21,17 +21,18 @@ class BaseModel:
                 if elem == __class__:
                     continue
                 if elem == 'created_at' or elem == 'updated_at':
-                    self.__dict__[elem] = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    dummy = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
+                    self.__dict__[elem] = dummy
                 else:
                     self.__dict__[elem] = value
         else:
             models.storage.new(self)
 
-    
     def __str__(self):
         """Returns a string representation of the base class"""
-        return "[{}] ({}) {}".format(self.__class__.__name__, self.id, self.__dict__)
-    
+        return "[{}] ({}) {}".format(self.__class__.__name__, self.id,
+                                     self.__dict__)
+
     def save(self):
         """Updates the updated_at attribute"""
         self.updated_at = datetime.now()
