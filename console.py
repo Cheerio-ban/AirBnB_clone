@@ -34,7 +34,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """Handles the empty line input"""
-        pass
+        return cmd.Cmd.emptyline(self)
 
     def postloop(self):
         print()
