@@ -35,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
 
     def emptyline(self):
         """Handles the empty line input"""
-        return cmd.Cmd.emptyline(self)
+        return
 
     def do_create(self, line):
         """Usage: create <class name>"""
