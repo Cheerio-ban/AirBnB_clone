@@ -73,14 +73,14 @@ class HBNBCommand(cmd.Cmd):
                     c2[cmd]('{}.{} {}'.format(ar[0], id, at_d))
 
     def do_EOF(self, line):
-        """End of file command to exit the program"""
+        """End of file or ctrl^D command to exit the program"""
         return True
 
     def do_quit(self, line):
         """Quit command to exit the program"""
         return True
 
-    def emptyline(self):
+    def emptyline(self) -> None:
         """Handles the empty line input"""
         return
 
@@ -93,7 +93,7 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
         else:
-            created_object = HBNBCommand.__classes[line]
+            created_object = eval(f'{line}()')
             created_object.save()
             print(created_object.id)
 
@@ -164,10 +164,10 @@ class HBNBCommand(cmd.Cmd):
             at_d = ar[1].split("{")[-1].strip("}")
             at_d = at_d.split(",")
             b = {o.split(":")[0].strip(" '").strip(' "'):
-                    o.split(":")[1].strip(" '").strip(' "') for o in at_d}
+                 o.split(":")[1].strip(" '").strip(' "') for o in at_d}
             objs = models.storage.all()
             if not any(obj.id == id_no for obj in objs.values()
-                        if obj.__class__.__name__ == cls):
+                       if obj.__class__.__name__ == cls):
                 print("** no instance found **")
             else:
                 obj = objs["{}.{}".format(ar[0], id_no)]
@@ -208,25 +208,9 @@ class HBNBCommand(cmd.Cmd):
         models.storage.save()
 
     def count(self, line):
-        """
-            Count the total instances of.
-            a supported model from our file storage.
-        """
-        cnt = 0
-        line = self.parse_input(line).replace('count', '').replace(' ', '')
-        if line not in HBNBCommand.__classes.keys():
-            print("** class doesn't exist **")
-            return
-        try:
-            with open('file.json', 'r', encoding='utf-8') as f:
-                objs = json.loads(f.read())
-            for obj in objs.values():
-                name = obj['__class__']
-                if name == line:
-                    cnt += 1
-            print(cnt)
-        except Exception:
-            pass
+        ar = self.parse_input(line)
+        print(len([obj for obj in models.storage.all().values()
+              if obj.__class__.__name__ == ar[0]]))
 
     def to_dict(self, obj):
         """Convert @obj to  dict"""
