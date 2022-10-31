@@ -103,10 +103,12 @@ class HBNBCommand(cmd.Cmd):
         if len(line) == 0:
             print("** class name missing **")
             return
-        if lines[0] not in HBNBCommand.__classes.keys():
+        if lines[0] not in HBNBCommand.__classes:
             print("** class doesn't exist **")
             return
-
+        if len(lines) == 1:
+            print("** instance id missing **")
+            return
         id_no = lines[1]
         objs = models.storage.all()
         if any(obj.id == id_no for obj in objs.values()):
