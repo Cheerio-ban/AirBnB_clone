@@ -263,19 +263,18 @@ e952b772-80a5-41e9-b728-6bc4dc5c21b4
 ```
 ## Authors
 <details>
-    <summary>Ayomide Suara</summary>
+    <summary>Chiemezie Precious Jacob</summary>
     <ul>
-    <li><a href="https://www.github.com/aysuarex">Github</a></li>
-    <li><a href="https://www.twitter.com/Aysuarex">Twitter</a></li>
-    <li><a href="mailto:aysuarex@gmail.com">e-mail</a></li>
+    <li><a href="https://www.github.com/Cheerio-ban">Github</a></li>
+    <li><a href="https://www.twitter.com/peejayhack">Twitter</a></li>
+    <li><a href="chiemezie.jacob@gmail.com">e-mail</a></li>
     </ul>
 </details>
 <details>
-    <summary>Bamidele Adefolaju</summary>
+    <summary>Atoro-Tywo Olatomiwa</summary>
     <ul>
-    <li><a href="https://www.github.com/lexxyla">Github</a></li>
-    <li><a href="https://www.twitter.com/lexxyla">Twitter</a></li>
-    <li><a href="mailto:bamideleadefolaju@gmail.com">e-mail</a></li>
+    <li><a href="https://www.github.com/TY-Codes">Github</a></li>
+    <li><a href="atorotywot@gmail.com">e-mail</a></li>
     </ul>
 </details>
 
