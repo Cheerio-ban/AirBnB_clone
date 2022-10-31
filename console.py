@@ -116,10 +116,10 @@ class HBNBCommand(cmd.Cmd):
 
     def do_destroy(self, line):
         """usage: destroy BaseModel 1234-1234-1234"""
-        lines = self.parse_input(line)
         if len(line) == 0:
             print("** class name missing **")
             return
+        lines = self.parse_input(line)
         if lines[0] and lines[0] not in HBNBCommand.__classes.keys():
             print("** class doesn't exist **")
             return
@@ -131,7 +131,7 @@ class HBNBCommand(cmd.Cmd):
             del objs["{}.{}".format(lines[0], id_no)]
             models.storage.save()
         else:
-            print("** no instance id found **")
+            print("** no instance found **")
 
     def do_all(self, line):
         """usage: all <class name>"""
