@@ -188,7 +188,7 @@ class HBNBCommand(cmd.Cmd):
             id_no = lines[1]
             if not any(obj.id == id_no for obj in objs.values()
                        if obj.__class__.__name__ == lines[0]):
-                print("** no instance id found **")
+                print("** no instance found **")
                 return
         if len(lines) == 2:
             print("** attribute name missing **")
